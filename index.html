@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="keys">
+
+        <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <span class="sound">clap</span>
+        </div>
+
+        <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <span class="sound">hihat</span>
+        </div>
+
+        <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <span class="sound">kick</span>
+        </div>
+
+        <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <span class="sound">openhat</span>
+        </div>
+
+        <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <span class="sound">boom</span>
+        </div>
+
+        <div data-key="72" class="key">
+            <kbd>H</kbd>
+            <span class="sound">ride</span>
+        </div>
+
+        <div data-key="74" class="key">
+            <kbd>J</kbd>
+            <span class="sound">snare</span>
+        </div>
+
+        <div data-key="75" class="key">
+            <kbd>K</kbd>
+            <span class="sound">ride</span>
+        </div>
+
+        <div data-key="72" class="key">
+            <kbd>H</kbd>
+            <span class="sound">tom</span>
+        </div>
+
+        <div data-key="76" class="key">
+            <kbd>L</kbd>
+            <span class="sound">tink</span>
+        </div>
+    </div>
+
+    <audio data-key="65" src="./sounds/812364_SOUNDDOGS__aw.mp3"></audio>
+    <audio data-key="83" src="./sounds/AguacataratasWaterfallSmall1.mp3"></audio>
+    <audio data-key="68" src="./sounds/Ambiente GuerraGuerra sonido con aviones.mp3"></audio>
+    <audio data-key="70" src="./sounds/CorrerCorrer.mp3"></audio>
+    <audio data-key="71" src="./sounds/Motor de CocheEfectos de sonido - Motor de coche.mp3"></audio>
+    <audio data-key="72" src="./sounds/aplausosaplausos.mp3"></audio>
+    <audio data-key="74" src="./sounds/auto pasandocarro pasando.mp3"></audio>
+    <audio data-key="75" src="./sounds/cri cri cat_meow_human_voice_2.mp3"></audio>
+    <audio data-key="76" src="./sounds/focartificials.mp3"></audio>
+
+
+    <script>
+        window.addEventListener('keydown', function(e) {
+            
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+            if(!audio) return;
+            audio.currentTime = 0;
+            audio.play();
+            key.classList.add('playing');
+        });
+        
+        function removeTransition (e) {
+          if(e.propertyName !== 'transform' ) return;
+         this.classList.remove('playing');
+        }
+         
+        const keys = document.querySelectorAll('.key');
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    </script>
+
+
+</body>
+
+</html>
